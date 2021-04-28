@@ -7,49 +7,33 @@ simon-dice
 5. Vengono mostrati i numeri indovinati
  */
 
-$(document).ready(function(){
-  reset();
-  // array dei numeri ramdom generati dal computer
-  var arrRandom = [];
-  // array dove vado a salvare i miei numeri
-  var arrNumber = [];
-  // array dove vado a salvare i miei numeri compatibili con arrRandom
-  var arrResult = [];
+$(function(){
 
-  $('#btn-start').click(function(){
-    $(this).hide();
-    while(arrRandom.length < 5){
-      arrRandom.push(generatorRandomNumber(1,100));
-    }
-    console.log(arrRandom)
+  var arrayRandom = [];
+  var myNumber = [];
+  var numeriCorretti = [];
+//creo un array dove vengono salvati i numeri
 
-    printOutput(arrRandom.toString(),'#display')
 
-    setTimeout(function(){
-      printOutput('Indovina i 5 numeri', '#display');
-      $('#btn-box').show();
-    }, 5000);
+//clicco su via e mi compaiono i 5 numeri generati dal computer
+//devo creare una funzione di reset
 
-  });
 
-  //tramite input devo inserire 5 numeri che verranno pushati aLL'interno di arrNumber
- $('btn-start').click(function(){
-	arrNumber.push(parseInt($('inp').val()));
-	$('#inp').val('');
 
-	if(arrNumber.length === parseInt($('')))
+})
+
+
+
+
 //FUNZIONI
-function reset(){
-  printOutput('Pronto.. Clicca VIA!', '#display');
-  $('#btn-start').show();
+//Funzione di reset
+function reset() {
   $('#btn-box').hide();
-};
+  $('#btn-start').show();
+  $('#btn-restart').show();
+}
 
-function printOutput (text, target){
-  $(target).text(text);
-};
-
-function generatorRandomNumber(min, max){
- return Math.floor(Math.random()*(max - min + 1)+min);
-};
-
+//Creo una funzione che mi genera numeri
+function printDisplay(text) {
+  $('#display').text(text);
+}
