@@ -31,6 +31,55 @@ $(function(){
 
   })
 //dopo 5 secondi i numeri spariscono e compare l imput dove l utente inserisci i numeri
+ $('#btn').click(function () {
+   
+   if(myNumber.length < limite) {
+
+     if(myNumber.includes($('input').val())){
+       printDisplay("Hai già inserito questo numero")
+     }else{
+       myNumber.push($('input').val());
+       printDisplay('Hai inserito i seguenti numeri ' + myNumber.join(' - '));
+     }
+   }
+    if(myNumber.length === limite){
+      for(var num of myNumber){
+            
+        if(arrayRandom.includes(parseInt(num))){
+          numeriCorretti.push(num);
+        }
+        
+      }
+      console.log(numeriCorretti);
+
+
+      setTimeout(function () {
+        
+        printDisplay('Attendi...');
+        $('#btn-box').hide();
+      }, 500);
+      
+      setTimeout(function () {
+
+        if(numeriCorretti === 0){
+          printDisplay('Hai perso');
+        }else if(numeriCorretti.length === limite){
+          printDisplay('Hai vinto');
+        }else{
+          printDisplay('Hai indovinato questi numeri: ' + numeriCorretti.join(' - '));
+        }
+        $('#btn-restart').show();
+      }, 2000);
+    }
+    $('input').val('');
+    $('input').focus();
+
+
+ })
+
+ $('#btn-restart').click(function(){
+  reset();
+});
 
 //i numeri inseriti dall'utente verranno salvati in un array
 
